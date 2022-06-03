@@ -52,13 +52,12 @@ function putStoriesOnPage() {
 }
 
 
-/** handles story form submission: takes in values from story submission
+/** handles story form submission: extracts values from story submission
  * form, calls addStory, generates story markup to append to page
 */
 
 async function getNewStoryAndSubmit(evt) {
   evt.preventDefault();
-
 
   // get values from form
   const title = $("#story-title").val();
@@ -77,6 +76,7 @@ async function getNewStoryAndSubmit(evt) {
   console.log("resultOfAddStoryCall: ", resultOfAddStoryCall);
   const newStoryMarkup = generateStoryMarkup(resultOfAddStoryCall);
   $allStoriesList.prepend(newStoryMarkup);
+
   //resets form with empty values
   $addStoryForm.trigger("reset");
   hidePageComponents();
@@ -85,44 +85,3 @@ async function getNewStoryAndSubmit(evt) {
 
 //event listener for add story form submit
 $addStoryForm.on("submit", getNewStoryAndSubmit);
-
-
-
-
-
-
-
-
-
-
-// async function getNewStoryAndSubmit(evt) {
-//   console.debug("getNewStoryAndSubmit", evt);
-//   // clear page then display form
-//   evt.preventDefault();
-//   hidePageComponents();
-//   $addStoryForm.show();
-
-//   // get values from form
-//   const title = $("#story-title").val();
-//   const author = $("#story-author").val();
-//   const url = $("#story-url").val();
-
-//   // put values in an obj
-//   const newStory = {
-//     title: title,
-//     author: author,
-//     url: url
-//   };
-
-//   // instantiate a Story with obj and display on page
-//   const resultOfAddStoryCall = await storyList.addStory(currentUser, newStory);
-//   console.log("resultOfAddStoryCall: ", resultOfAddStoryCall);
-//   hidePageComponents();
-//   await getAndShowStoriesOnStart();
-
-//   //resets form with empty values
-//   $addStoryForm.trigger("reset");
-// }
-
-// //event listener for add story form submit
-// $addStoryForm.on("submit", getNewStoryAndSubmit);
