@@ -50,3 +50,25 @@ function putStoriesOnPage() {
 
   $allStoriesList.show();
 }
+
+
+/** handles story form submission: takes in values from story submission
+ * form, calls addStory, generates story markup to append to page
+*/
+
+async function getNewStoryAndSubmit(evt) {
+  const title = $("#story-title").val();
+  const author = $("#story-author").val();
+  const url = $("#story-url").val();
+
+  const newStory = {
+    title: title,
+    author: author,
+    url: url
+  }
+
+  const resultOfAddStoryCall = await storyList.addStory(currentUser, newStory);
+  console.log("resultOfAddStoryCall: ", resultOfAddStoryCall);
+  putStoriesOnPage();
+
+}
