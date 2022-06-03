@@ -94,7 +94,18 @@ class StoryList {
 
     { token: user.loginToken, story: newStory }
   );
-    console.log("made it after the axios call");
+    console.log("the response is :  ", response);
+
+    this.storyId = storyId;
+    this.title = title;
+    this.author = author;
+    this.url = url;
+    this.username = username;
+    this.createdAt = createdAt;
+
+    let returnObj = {
+      ${response.data.}
+    };
 
     return response;
     }
