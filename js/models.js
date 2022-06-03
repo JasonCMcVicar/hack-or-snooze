@@ -176,29 +176,40 @@ class User {
     );
   }
 
-  /** first method */
-  //take a story instance and insert into user favorite array...
+  /** first method - take a story instance and insert into our array
+   * of favorites for a partiuclar user
+   */
 
-  //what information should appear in this array?
-  //my guess is some story information, information to load story later
 
   async insertStoryIntoFavorites(story) {
 
     const response = await axios({
       url: `${BASE_URL}/users/${currentUser.username}/favorites/${story.storyId}`,
       method: "POST",
-      data: { token:  `${currentUser.loginToken}` }
+      data: { token: `${currentUser.loginToken}` }
     });
-    console.log("our response from the api post ...", response);
-    // currentUser.favorites.push(story);
-    console.log("what's inside my favorite list... ", currentUser.favorites);
+
+    return currentUser.favorites.push(story);
 
   }
 
 
 
-  /** second method */
+  /** second method - take a story instance and remove it from our array of
+   * favorited articles
+  */
 
+  async removedStoryFromFavorites(story) {
+
+    const response = await axios({
+      url: `${BASE_URL}/users/${currentUser.username}/favorites/${story.storyId}`,
+      method: "DELETE",
+      data: { token: `${currentUser.loginToken}` }
+    });
+
+    return currentUser.favorites;
+
+  }
 
 
 
