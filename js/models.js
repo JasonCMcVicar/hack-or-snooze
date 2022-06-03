@@ -96,18 +96,19 @@ class StoryList {
   );
     console.log("the response is :  ", response);
 
-    this.storyId = storyId;
-    this.title = title;
-    this.author = author;
-    this.url = url;
-    this.username = username;
-    this.createdAt = createdAt;
+    // this.storyId = storyId;
+    // this.title = title;
+    // this.author = author;
+    // this.url = url;
+    // this.username = username;
+    // this.createdAt = createdAt;
 
-    let returnObj = {
-      ${response.data.}
-    };
+    // let returnObj = {
+    //   ${response.data.}
+    // };
 
-    return response;
+    return new Story(response.data.story);
+    
     }
 }
 
