@@ -61,7 +61,7 @@ class StoryList {
 
     // turn plain old story objects from API into instances of Story class
     const stories = response.data.stories.map(story => new Story(story));
-
+    console.log("stories instances here: ", stories);
     // build an instance of our own class using the new array of stories
     return new StoryList(stories);
   }
@@ -74,8 +74,9 @@ class StoryList {
    */
 
   async addStory(user, newStory) {
-    console.debug("addStory called");
-    console.log("user.loginToken = ", user.loginToken);
+
+    //console.debug("addStory called");
+    //console.log("user.loginToken = ", user.loginToken);
 
     const response = await axios.post(
       `${BASE_URL}/stories`,
@@ -84,7 +85,7 @@ class StoryList {
 
     const story = new Story(response.data.story);
     this.stories.unshift(story);
-
+    console.log("this is what a single story looks like... ", story);
     return story;
   }
 }
@@ -174,6 +175,35 @@ class User {
       response.data.token
     );
   }
+
+  /** first method */
+  //take a story instance and insert into user favorite array...
+
+  //what information should appear in this array?
+  //my guess is some story information, information to load story later
+
+  async insertStoryIntoFavorites(username, story) {
+
+    const response = await axios({
+      url: `${BASE_URL}/${username}/favorites/${story.storyId}`,
+      method: "POST",
+      data: { token:  `${username.loginToken}` }
+    });
+    console.log("our response from the api post ...", response);
+    currentUser.favorites.push(story);
+    console.log("what's inside my favorite list... ", currentUser.favorites);
+
+  }
+
+
+
+  /** second mehtod */
+
+
+
+
+
+
 
   /** When we already have credentials (token & username) for a user,
    *   we can log them in automatically. This function does that.
