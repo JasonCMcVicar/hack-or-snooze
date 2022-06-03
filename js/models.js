@@ -92,7 +92,7 @@ class StoryList {
   const response = await axios.post(
     `${BASE_URL}/stories`,
 
-    { params: { token: user.loginToken, story: newStory } }
+    { token: user.loginToken, story: newStory }
   );
     console.log("made it after the axios call");
 
