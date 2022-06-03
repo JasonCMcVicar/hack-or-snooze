@@ -57,11 +57,8 @@ function putStoriesOnPage() {
 */
 
 async function getNewStoryAndSubmit(evt) {
-  console.debug("getNewStoryAndSubmit", evt);
-  // clear page then display form
   evt.preventDefault();
-  hidePageComponents();
-  $addStoryForm.show();
+
 
   // get values from form
   const title = $("#story-title").val();
@@ -78,15 +75,23 @@ async function getNewStoryAndSubmit(evt) {
   // instantiate a Story with obj and display on page
   const resultOfAddStoryCall = await storyList.addStory(currentUser, newStory);
   console.log("resultOfAddStoryCall: ", resultOfAddStoryCall);
-  hidePageComponents();
-  await getAndShowStoriesOnStart();
-
+  const newStoryMarkup = generateStoryMarkup(resultOfAddStoryCall);
+  $allStoriesList.prepend(newStoryMarkup);
   //resets form with empty values
   $addStoryForm.trigger("reset");
 }
 
 //event listener for add story form submit
 $addStoryForm.on("submit", getNewStoryAndSubmit);
+
+
+
+
+
+
+
+
+
 
 // async function getNewStoryAndSubmit(evt) {
 //   console.debug("getNewStoryAndSubmit", evt);
