@@ -73,7 +73,7 @@ class StoryList {
    * Returns the new Story instance
    */
 
-  async addStory(user, newStory) {
+  async addStory(/*user, newStory*/) {
     // UNIMPLEMENTED: complete this function!
     /*
     user = ("theCat");
@@ -85,13 +85,26 @@ class StoryList {
     let newStory = await storyList.addStory(currentUser,
       {title: "Test", author: "Me", url: "http://meow.com"});
     */
-    const response = await axios({
-      url: `${BASE_URL}/stories`,
-      method: "POST",
-      params: {"token": user.loginToken, "story": }
-    })
-    
-  }
+    let user = { userObj:
+      { username: "lilithcat",
+        name: "lilithcat",
+        createdAt: "2022-06-02T19:03:57.323Z",
+        favorites: [],
+        ownStories: [],
+      }, loginToken: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImxpbGl0aGNhdCIsImlhdCI6MTY1NDE5NjYzN30.cXb98zmezSguUU2NJqBKy7Oi44KAPY970HTF1LWKMNE"};
+    let newStory = {
+        "author": "Matt Lane",
+        "title": "The best story ever",
+        "url": "http://google.com",
+      };
+  const response = await axios.post(
+    `${BASE_URL}/stories`,
+
+    { params: { token: user.loginToken, story: newStory } }
+  );
+    console.log("made it after the axios call");
+    return response;
+    }
 }
 
 
@@ -106,13 +119,13 @@ class User {
    */
 
   constructor({
-                username,
-                name,
-                createdAt,
-                favorites = [],
-                ownStories = []
-              },
-              token) {
+    username,
+    name,
+    createdAt,
+    favorites = [],
+    ownStories = []
+  },
+    token) {
     this.username = username;
     this.name = name;
     this.createdAt = createdAt;
