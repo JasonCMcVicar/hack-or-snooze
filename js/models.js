@@ -185,19 +185,19 @@ class User {
   async insertStoryIntoFavorites(story) {
 
     const response = await axios({
-      url: `${BASE_URL}/${username}/favorites/${story.storyId}`,
+      url: `${BASE_URL}/users/${currentUser.username}/favorites/${story.storyId}`,
       method: "POST",
-      data: { token:  `${username.loginToken}` }
+      data: { token:  `${currentUser.loginToken}` }
     });
     console.log("our response from the api post ...", response);
-    currentUser.favorites.push(story);
+    // currentUser.favorites.push(story);
     console.log("what's inside my favorite list... ", currentUser.favorites);
 
   }
 
 
 
-  /** second mehtod */
+  /** second method */
 
 
 
