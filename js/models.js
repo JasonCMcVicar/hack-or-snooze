@@ -182,7 +182,7 @@ class User {
   //what information should appear in this array?
   //my guess is some story information, information to load story later
 
-  async insertStoryIntoFavorites(username, story) {
+  async insertStoryIntoFavorites(story) {
 
     const response = await axios({
       url: `${BASE_URL}/${username}/favorites/${story.storyId}`,
