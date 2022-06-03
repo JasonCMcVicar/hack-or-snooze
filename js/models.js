@@ -180,7 +180,6 @@ class User {
    * of favorites for a partiuclar user
    */
 
-
   async insertStoryIntoFavorites(story) {
 
     const response = await axios({
@@ -192,7 +191,6 @@ class User {
     return currentUser.favorites.push(story);
 
   }
-
 
 
   /** second method - take a story instance and remove it from our array of
@@ -207,14 +205,22 @@ class User {
       data: { token: `${currentUser.loginToken}` }
     });
 
-    return currentUser.favorites;
+    currentUser.favorites = response.data.user.favorites;
+    console.log("response.data.user.favorites = ", response.data.user.favorites);
+    console.log("CU Faves ", currentUser.favorites);
+
+    // return currentUser;
 
   }
 
+/*****/
 
+/** Stopping point of sprint. instertStoryIntoFavorites and removedStoryFromFavorites
+ * are working functions.
+ * Building out UI for these fucntions is next step.
+ */
 
-
-
+/*****/
 
   /** When we already have credentials (token & username) for a user,
    *   we can log them in automatically. This function does that.
