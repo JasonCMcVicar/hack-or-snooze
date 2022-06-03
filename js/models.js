@@ -73,36 +73,29 @@ class StoryList {
    * Returns the new Story instance
    */
 
-  async addStory(/*user, newStory*/) {
-    // UNIMPLEMENTED: complete this function!
-    /*
-    user = ("theCat");
-    console.log(user);
-    let newStory = {title: "house", author: "humannn", url:"www.google.com"};
-    console.log(newStory);
-    */
-    /*
-    let newStory = await storyList.addStory(currentUser,
-      {title: "Test", author: "Me", url: "http://meow.com"});
-    */
-    let user = { userObj:
-      { username: "lilithcat",
-        name: "lilithcat",
-        createdAt: "2022-06-02T19:03:57.323Z",
-        favorites: [],
-        ownStories: [],
-      }, loginToken: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImxpbGl0aGNhdCIsImlhdCI6MTY1NDE5NjYzN30.cXb98zmezSguUU2NJqBKy7Oi44KAPY970HTF1LWKMNE"};
-    let newStory = {
-        "author": "Matt Lane",
-        "title": "The best story ever",
-        "url": "http://google.com",
-      };
+  async addStory(user, newStory) {
+    console.log("addStory called");
+    // let user = { userObj:
+    //   { username: "lilithcat",
+    //     name: "lilithcat",
+    //     createdAt: "2022-06-02T19:03:57.323Z",
+    //     favorites: [],
+    //     ownStories: [],
+    //   }, loginToken: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImxpbGl0aGNhdCIsImlhdCI6MTY1NDE5NjYzN30.cXb98zmezSguUU2NJqBKy7Oi44KAPY970HTF1LWKMNE"};
+    // let newStory = {
+    //     "author": "Matt Lane",
+    //     "title": "The best story ever",
+    //     "url": "http://google.com",
+    //   };
+    console.log("user.loginToken = ", user.loginToken);
+
   const response = await axios.post(
     `${BASE_URL}/stories`,
 
     { params: { token: user.loginToken, story: newStory } }
   );
     console.log("made it after the axios call");
+
     return response;
     }
 }
