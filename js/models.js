@@ -74,18 +74,18 @@ class StoryList {
    */
 
   async addStory(user, newStory) {
-    console.log("addStory called");
+    console.debug("addStory called");
     console.log("user.loginToken = ", user.loginToken);
 
     const response = await axios.post(
       `${BASE_URL}/stories`,
-
       { token: user.loginToken, story: newStory }
     );
-    console.log("the response is :  ", response);
 
-    return new Story(response.data.story);
+    const story = new Story(response.data.story);
+    this.stories.unshift(story);
 
+    return story;
   }
 }
 
