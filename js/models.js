@@ -75,18 +75,6 @@ class StoryList {
 
   async addStory(user, newStory) {
     console.log("addStory called");
-    // let user = { userObj:
-    //   { username: "lilithcat",
-    //     name: "lilithcat",
-    //     createdAt: "2022-06-02T19:03:57.323Z",
-    //     favorites: [],
-    //     ownStories: [],
-    //   }, loginToken: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImxpbGl0aGNhdCIsImlhdCI6MTY1NDE5NjYzN30.cXb98zmezSguUU2NJqBKy7Oi44KAPY970HTF1LWKMNE"};
-    // let newStory = {
-    //     "author": "Matt Lane",
-    //     "title": "The best story ever",
-    //     "url": "http://google.com",
-    //   };
     console.log("user.loginToken = ", user.loginToken);
 
   const response = await axios.post(
@@ -96,19 +84,8 @@ class StoryList {
   );
     console.log("the response is :  ", response);
 
-    // this.storyId = storyId;
-    // this.title = title;
-    // this.author = author;
-    // this.url = url;
-    // this.username = username;
-    // this.createdAt = createdAt;
-
-    // let returnObj = {
-    //   ${response.data.}
-    // };
-
     return new Story(response.data.story);
-    
+
     }
 }
 
