@@ -57,18 +57,29 @@ function putStoriesOnPage() {
 */
 
 async function getNewStoryAndSubmit(evt) {
+  console.debug("getNewStoryAndSubmit", evt);
+  // clear page then display form
+  evt.preventDefault();
+  hidePageComponents();
+  $addStoryForm.show();
+
+  // get values from form
   const title = $("#story-title").val();
   const author = $("#story-author").val();
   const url = $("#story-url").val();
 
+  // put values in an obj
   const newStory = {
     title: title,
     author: author,
     url: url
   }
 
+  // instantiate a Story with obj and display on page
   const resultOfAddStoryCall = await storyList.addStory(currentUser, newStory);
   console.log("resultOfAddStoryCall: ", resultOfAddStoryCall);
+  hidePageComponents();
   putStoriesOnPage();
-
 }
+
+$addStoryForm.on("submit", getNewStoryAndSubmit);
