@@ -73,13 +73,17 @@ async function getNewStoryAndSubmit(evt) {
     title: title,
     author: author,
     url: url
-  }
+  };
 
   // instantiate a Story with obj and display on page
   const resultOfAddStoryCall = await storyList.addStory(currentUser, newStory);
   console.log("resultOfAddStoryCall: ", resultOfAddStoryCall);
   hidePageComponents();
-  putStoriesOnPage();
+  await getAndShowStoriesOnStart();
+
+  //resets form with empty values
+  $addStoryForm.trigger("reset");
 }
 
+//event listener for add story form submit
 $addStoryForm.on("submit", getNewStoryAndSubmit);
