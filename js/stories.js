@@ -79,6 +79,8 @@ async function getNewStoryAndSubmit(evt) {
   $allStoriesList.prepend(newStoryMarkup);
   //resets form with empty values
   $addStoryForm.trigger("reset");
+  hidePageComponents();
+  $allStoriesList.show();
 }
 
 //event listener for add story form submit
